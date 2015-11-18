@@ -1,0 +1,2 @@
+gcc main.c malloc.c inserir.c ordenar.c buscar.c getPai.c getTipoNo.c remover.c rotacionar.c -o main
+

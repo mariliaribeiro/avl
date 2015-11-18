@@ -23,11 +23,11 @@ int main(){
 }
 
 void popular(Arvore* arvore){
-    arvore->raiz = inserir(arvore->raiz, 20);
-    arvore->raiz = inserir(arvore->raiz, 10);
-    arvore->raiz = inserir(arvore->raiz, 15);
-    arvore->raiz = inserir(arvore->raiz, 13);
-    arvore->raiz = inserir(arvore->raiz, 18);
+    arvore->raiz = inserir(arvore, arvore->raiz, 20);
+    arvore->raiz = inserir(arvore, arvore->raiz, 10);
+    arvore->raiz = inserir(arvore, arvore->raiz, 15);
+    arvore->raiz = inserir(arvore, arvore->raiz, 13);
+    arvore->raiz = inserir(arvore, arvore->raiz, 18);
     /*arvore->raiz = inserir(arvore->raiz, 5);
     arvore->raiz = inserir(arvore->raiz, 2);
     arvore->raiz = inserir(arvore->raiz, 7);
@@ -42,29 +42,29 @@ void popular(Arvore* arvore){
     arvore->raiz = inserir(arvore->raiz, 6);*/
 }
 
-void exibeOrdem(Arvore* minhaArvore){
+void exibeOrdem(Arvore* arvore){
     printf("\n#----- Visualizando estrutura da árvore -----#\n");
     printf("Árvore pré-ordem: ");
-    preOrdem(minhaArvore->raiz);
+    preOrdem(arvore->raiz);
     printf("\nArvore pós-ordem: ");
-    posOrdem(minhaArvore->raiz);
+    posOrdem(arvore->raiz);
     printf("\nÁrvore em ordem: ");
-    emOrdem(minhaArvore->raiz);
+    emOrdem(arvore->raiz);
     printf("\n");
 }
 
-void exibeBusca(Arvore* minhaArvore){
+void exibeBusca(Arvore* arvore){
     printf("\n#----- Buscando valores da árvore -----#\n");
-    imprimeBusca(buscar(minhaArvore->raiz, 10), 10);
-    imprimeBusca(buscar(minhaArvore->raiz, 20), 20);
-    imprimeBusca(buscar(minhaArvore->raiz, 15), 15);
-    imprimeBusca(buscar(minhaArvore->raiz, 31), 31);
+    imprimeBusca(buscar(arvore->raiz, 10), 10);
+    imprimeBusca(buscar(arvore->raiz, 20), 20);
+    imprimeBusca(buscar(arvore->raiz, 15), 15);
+    imprimeBusca(buscar(arvore->raiz, 31), 31);
 }
 
-void exibeRemocao(Arvore* minhaArvore){
+void exibeRemocao(Arvore* arvore){
     printf("\n#----- Removendo valores da árvore: -----#\n");
-    remover(minhaArvore, minhaArvore->raiz, 13);
-    remover(minhaArvore, minhaArvore->raiz, 25);
-    remover(minhaArvore, minhaArvore->raiz, 10);
-    remover(minhaArvore, minhaArvore->raiz, 20);
+    remover(arvore, arvore->raiz, 13);
+    remover(arvore, arvore->raiz, 25);
+    remover(arvore, arvore->raiz, 10);
+    remover(arvore, arvore->raiz, 20);
 }

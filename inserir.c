@@ -1,6 +1,6 @@
 #include "inserir.h"
 #include "malloc.h"
-#include "rotacionar.h"
+#include "balancear.h"
 
 Node* inserirNo(int valor){
     Node* novoNo = criaNode();
@@ -19,12 +19,12 @@ Node* inserir(Arvore* arvore, Node* subRaiz, int valor){
 			subRaiz->sae = inserir(arvore, subRaiz->sae, valor);
 	}else{
 		return inserirNo(valor);
-        //return rotacionar(arvore, subRaiz); //raiz recebe o nó da rotação
 	}
 		
     return subRaiz;
 }
 
-Node* balancear(Arvore* arvore, Node* subRaiz, int valor){
-	rotacionar();
+Node* inserirBalancear(Arvore* arvore, Node* subRaiz, int valor){
+    subRaiz = inserir(arvore, subRaiz, valor);
+	return balancear(arvore, subRaiz);
 }

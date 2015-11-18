@@ -1,9 +1,8 @@
-#include "rotacionar.h"
+c#include "rotacionar.h"
 #include "getPai.h"
 #include "getTipoNo.h"
 
-/* para dia 23/11
- * prova dia 27/11
+/* 
 	-------------------------------------------------------------------------------------
     | Índice | Índice Filho Desbalanceado |           Operações (Rotação)               |
 	-------------------------------------------------------------------------------------
@@ -17,82 +16,87 @@
 	-------------------------------------------------------------------------------------
 */
 
-Node* rotacionar(Arvore* arvore, Node* no, Node* noPai){
-	Node* noPai;
-	int alturaPercorrida;
-	
-	// verificar se o nó está balanceado
-	if(isBalanceado(no) != 1){
-		if (no->valor < arvore->raiz)
-			noPai = getPai(arvore->raiz->sae, no->valor);
-		else
-			noPai = getPai(arvore->raiz->sad, no->valor);
-	}
-	
-	// 
-	
-	/*Node* noPai;
-	int fatorBalanceamento;
-	//int fatorBalanceamentoPai = getFatorBalanceamento(altura);
-    
-    if (no != NULL){
-        if (no->valor == valor){
-			no->altura = getAltura(no); 
-			fatorBalanceamento = getFatorBalanceamento(no, altura);
-			
-			if (isBalanceado(fatorBalanceamento) != 1){
-				getRotacao();		
-			}
-        }
-        else if (no->valor > valor){
-			noPai = getPai(no, valor);
-            return remover(no->sae, valor);
-        }
-        else{
-			noPai = getPai(no, valor);
-            return remover(no->sad, valor);
-        }
-    }*/
-    return no;	
-}
-
-int isBalanceado(Node* no){
-	if(no->altura->direita >= -1 && no->altura->esquerda <= 1)
-		return 1;
-	else
-		return 0;
-}
-
-/*
-int getAltura(Node no){
-	if (no != NULL){
-		
-	}
-}
-
-int getFatorBalanceamento(Altura altura){
-	return (altura->alturaDireita) - (altura->alturaEsquerda);
-}
-
-void getRotacao(Node* no, int fbPai, int fbFilho){
+void rotacionar(Node* no, int fbPai, int fbFilho){
 	if (fbPai == 2){
 		if(fbFilho == 1 || fbFilho == 0){
-			rotacaoSimplesEsquerda(no); //noFilho ocupa o lugar do pai
+			printf("\nRotação símples a esquerda\n");
+            //return rotacaoSimplesEsquerda(no); //noFilho ocupa o lugar do pai
 		}
 		else if (fbFilho == -1){
-			 rotacaoSimplesDireita(noPai);
-			 rotacaoSimplesEsquerda(no);
+            //noFilho = rotacaoSimplesDireita(no);
+            //noPai = rotacaoSimplesEsquerda(noPai);
+            printf("\nRotação dupla com filho a direita e pai a esquerda\n");
 		}
 	}
 	else if (fbPai == -2){
 		if(fbFilho == -1 || fbFilho == 0){
-			return rotacaoSimplesDireita(no);
+			//return rotacaoSimplesDireita(no);
+            printf("\nRotação símples a direita\n");
 		}
 		else if (fbFilho == 1){			
-			 rotacaoSimplesEsquerda(no);
-			 rotacaoSimplesDireita(noPai);
+            //noFilho = rotacaoSimplesEsquerda(no);
+            //noPai = rotacaoSimplesDireita(noPai);
+            printf("\nRotação dupla com filho a esquerda e pai a direita\n");
 		}
 	}
 }
-* */
 
+Node* rotacaoSimplesEsquerda(Arvore* arvore, Node* noInserido, int valor){
+    Node* noIntermediario = getPaiArvore(arvore, noInserido->valor);
+    Node* subRaiz = getPaiArvore(arvore, noIntermediario->valor);
+
+    //subRaiz aponta para nó inserido
+    if(valor < subRaiz->valor)
+        subRaiz->sae = noInserido; 
+    else
+        subRaiz->sad = noInserido;
+
+    //nó intermediário passa a ser a raiz
+    if(subRaiz->valor < noIntermediario->valor)
+        noIntermediario->sae = subRaiz;
+    else
+        noIntermediario->sad = subRaiz;
+        
+    return noIntermediario;
+}
+
+    //nó inserido aponta para nó intermediário
+    /*if(valor < noIntermediario->valor)
+        noInserido->sae = noIntermediario; 
+    else
+        noInserido->sad = noIntermediario;
+    */
+
+Node* rotacaoSimplesDireita(Arvore* arvore, Node* noInserido, int valor){
+    Node* noIntermediario = getPaiArvore(arvore, noInserido->valor);
+    Node* subRaiz = getPaiArvore(arvore, noIntermediario->valor);
+
+    //subRaiz aponta para nó inserido
+    if(valor < subRaiz->valor)
+        subRaiz->sae = noInserido; 
+    else
+        subRaiz->sad = noInserido;
+
+    //nó intermediário passa a ser a raiz
+    if(subRaiz->valor < noIntermediario->valor)
+        noIntermediario->sae = subRaiz;
+    else
+        noIntermediario->sad = subRaiz;
+        
+    return noIntermediario;
+    
+    /*
+    Node* noIntermediario = getPaiArvore(arvore, noInserido->valor);
+    Node* subRaiz = getPaiArvore(arvore, noIntermediario->valor);
+    Node* noAux = subRaiz;
+    
+    subRaiz = noIntermediario;
+
+    if(valor < noIntermediario->valor)
+        subRaiz->sae = noIntermediario->sae;
+    else
+        subRaiz->sae = noIntermediario->sad;
+        
+    subRaiz->sad = noAux;    
+    return subRaiz;*/
+}

@@ -2,13 +2,9 @@
 #define __rotacionar_h
 #include "definicoes.h"
 
-Node* rotacionar(Arvore*, Node*, Node*);
-int isBalanceado(Node*);
+void rotacionar(Node*, int, int);
+//Node* rotacionar(Node*, int, int);
+//Node* rotacaoSimplesEsquerda(Node*);
+//Node* rotacaoSimplesDireita(Node*);
 
-/*
-Node* rotacaoSimplesEsquerda(Node*);
-Node* rotacaoSimplesDireita(Node*);
-int getFatorBalanceamento(Node*);
-
-*/
 #endif
