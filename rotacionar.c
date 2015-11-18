@@ -41,62 +41,42 @@ void rotacionar(Node* no, int fbPai, int fbFilho){
 	}
 }
 
-Node* rotacaoSimplesEsquerda(Arvore* arvore, Node* noInserido, int valor){
-    Node* noIntermediario = getPaiArvore(arvore, noInserido->valor);
-    Node* subRaiz = getPaiArvore(arvore, noIntermediario->valor);
-
-    //subRaiz aponta para nó inserido
-    if(valor < subRaiz->valor)
-        subRaiz->sae = noInserido; 
-    else
-        subRaiz->sad = noInserido;
-
-    //nó intermediário passa a ser a raiz
-    if(subRaiz->valor < noIntermediario->valor)
-        noIntermediario->sae = subRaiz;
-    else
-        noIntermediario->sad = subRaiz;
-        
-    return noIntermediario;
+Node* rotacaoSimplesEsquerda(Arvore* arvore, Node* desbalanceado, Node* no){
+	pai = getPai(desbalanceado, no->valor);
+	if(desbalanceado->sae->valor != pai->valor){
+		subRaiz = getPai(desbalanceado, pai->valor);
+		//if(subRaiz->valor < no->valor){}
+		subRaiz->sad = no;
+		pai->sae = subRaiz;
+		desbalanceado->sae = pai;		
+	}else{
+		paiDesbalanceado = getPai(arvore->raiz, desbalanceado->valor);
+		if(paiDesbalanceado != NULL){
+			pai->sad = desbalanceado;
+			paiDesbalanceado->sad = pai;
+		}else{
+			pai->sae = desbalanceado;
+			arvore->raiz = pai;
+		}
+	} 
 }
 
-    //nó inserido aponta para nó intermediário
-    /*if(valor < noIntermediario->valor)
-        noInserido->sae = noIntermediario; 
-    else
-        noInserido->sad = noIntermediario;
-    */
-
-Node* rotacaoSimplesDireita(Arvore* arvore, Node* noInserido, int valor){
-    Node* noIntermediario = getPaiArvore(arvore, noInserido->valor);
-    Node* subRaiz = getPaiArvore(arvore, noIntermediario->valor);
-
-    //subRaiz aponta para nó inserido
-    if(valor < subRaiz->valor)
-        subRaiz->sae = noInserido; 
-    else
-        subRaiz->sad = noInserido;
-
-    //nó intermediário passa a ser a raiz
-    if(subRaiz->valor < noIntermediario->valor)
-        noIntermediario->sae = subRaiz;
-    else
-        noIntermediario->sad = subRaiz;
-        
-    return noIntermediario;
-    
-    /*
-    Node* noIntermediario = getPaiArvore(arvore, noInserido->valor);
-    Node* subRaiz = getPaiArvore(arvore, noIntermediario->valor);
-    Node* noAux = subRaiz;
-    
-    subRaiz = noIntermediario;
-
-    if(valor < noIntermediario->valor)
-        subRaiz->sae = noIntermediario->sae;
-    else
-        subRaiz->sae = noIntermediario->sad;
-        
-    subRaiz->sad = noAux;    
-    return subRaiz;*/
+Node* rotacaoSimplesDireita(Arvore* arvore, Node* desbalanceado, Node* no){
+	pai = getPai(desbalanceado, no->valor);
+	if(desbalanceado->sae->valor != pai->valor){
+		subRaiz = getPai(desbalanceado, pai->valor);
+		//if(subRaiz->valor < no->valor){}
+		subRaiz->sae = no;
+		pai->sad = subRaiz;
+		desbalanceado->sad = pai;		
+	}else{
+		paiDesbalanceado = getPai(arvore->raiz, desbalanceado->valor);
+		if(paiDesbalanceado != NULL){
+			pai->sae = desbalanceado;
+			paiDesbalanceado->sae = pai;
+		}else{
+			pai->sad = desbalanceado;
+			arvore->raiz = pai;
+		}
+	} 
 }

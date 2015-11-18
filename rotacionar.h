@@ -4,7 +4,7 @@
 
 void rotacionar(Node*, int, int);
 //Node* rotacionar(Node*, int, int);
-//Node* rotacaoSimplesEsquerda(Node*);
-//Node* rotacaoSimplesDireita(Node*);
+Node* rotacaoSimplesEsquerda(Arvore*, Node*, Node*);
+Node* rotacaoSimplesDireita(Arvore*, Node*, Node*);
 
 #endif
