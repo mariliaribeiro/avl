@@ -3,43 +3,15 @@
 #include "getPai.h"
 #include "getTipoNo.h"
 
-Node* balancear(Arvore* arvore, Node* no){
-	Node* noPai;
+Node* balancear(Arvore* arvore, Node* no, Node* noInserido){
+	Node* noPai = getPai(arvore->raiz, no->valor);
 	int alturaPercorrida;
-	
+
 	// verificar se o nó está balanceado
-	if(isBalanceado(no) != 1){
-		if (no->valor < arvore->raiz->valor)
-			noPai = getPai(arvore->raiz->sae, no->valor);
-		else
-			noPai = getPai(arvore->raiz->sad, no->valor);
+	if(isBalanceado(no) != 1){		
+		return rotacionar(arvore, no, noInserido);	
 	}
-	
-	// 
-	
-	/*Node* noPai;
-	int fatorBalanceamento;
-	//int fatorBalanceamentoPai = getFatorBalanceamento(altura);
-    
-    if (no != NULL){
-        if (no->valor == valor){
-			no->altura = getAltura(no); 
-			fatorBalanceamento = getFatorBalanceamento(no, altura);
-			
-			if (isBalanceado(fatorBalanceamento) != 1){
-				getRotacao();		
-			}
-        }
-        else if (no->valor > valor){
-			noPai = getPai(no, valor);
-            return remover(no->sae, valor);
-        }
-        else{
-			noPai = getPai(no, valor);
-            return remover(no->sad, valor);
-        }
-    }*/
-    return no;	
+	return no;
 }
 
 int isBalanceado(Node* no){
@@ -49,14 +21,49 @@ int isBalanceado(Node* no){
 		return 0;
 }
 
-/*
-int getAltura(Node no){
-	if (no != NULL){
+Node* calculaAltura(Node* no){
+	// é folha?
+	if(isFolha(no) == 1)
+		return no;	
+	
+	// é sub folha?
+	else if(isSubFolha(no) == 1){
+		no->altura->esquerda = getAltura(no);
+		no->altura>direita = getAltura(no);
+		no->altura->fatorBalanceamento = no->altura>direita - no->altura->esquerda;
+		return no;
+	}	
 		
-	}
+	// é pai de dois filhos (maior dos menores)?
+	else if(isPaiDoisFilhos(no) == 1){
+		no->altura->esquerda = getAltura(no);
+		no->altura>direita = getAltura(no);
+		no->altura->fatorBalanceamento = no->altura>direita - no->altura->esquerda;
+		return no;
+	}			
 }
 
-int getFatorBalanceamento(Altura altura){
-	return (altura->alturaDireita) - (altura->alturaEsquerda);
+
+Altura* getAltura(Node no){
+	Altura* altura;
+	
+	if (no != NULL){
+		if(isSubFolha(no) == 1){
+			if(no->sae != NULL){
+				altura->esquerda += 1;
+				return getAltura(no->sae);
+			}else if(no->sad != NULL){
+				alturaDireita += 1;
+				return getAltura(no->sad);
+			}
+		}
+		else if(isPaiDoisFilhos(no) == 1){
+			altura->esquerda += 1;
+			altura->direita += 1;
+			altura = getAltura(no->sae);
+			altura = getAltura(no->sad);
+			return altura;
+		}
+	}
+	return altura;
 }
-*/

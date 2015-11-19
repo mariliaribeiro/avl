@@ -15,8 +15,10 @@ c#include "rotacionar.h"
 	|       |              -1             |             símples à direita               |
 	-------------------------------------------------------------------------------------
 */
+// fbPai = fator de balanceamento do nó desbalanceado
+// fbFilho = fator de balanceamento do nó filho do nó desbalanceado
 
-void rotacionar(Node* no, int fbPai, int fbFilho){
+void rotacionar(Arvore* arvore, Node* desbalanceado, Node* inserido, int fbPai, int fbFilho){
 	if (fbPai == 2){
 		if(fbFilho == 1 || fbFilho == 0){
 			printf("\nRotação símples a esquerda\n");
