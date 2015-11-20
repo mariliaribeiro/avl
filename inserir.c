@@ -20,11 +20,7 @@ Node* inserir(Arvore* arvore, Node* subRaiz, int valor){
 	}else{
 		return inserirNo(valor);
 	}
-		
+	subRaiz = balancear(arvore, subRaiz);
     return subRaiz;
 }
 
-Node* inserirBalancear(Arvore* arvore, Node* subRaiz, int valor){
-    subRaiz = inserir(arvore, subRaiz, valor);
-	return balancear(arvore, subRaiz);
-}

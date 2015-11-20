@@ -5,5 +5,4 @@
 
 Node* inserirNo(int);
 Node* inserir(Arvore*, Node*,int);
-Node* inserirBalancear(Arvore*, Node*, int);
 #endif

@@ -3,67 +3,37 @@
 #include "getPai.h"
 #include "getTipoNo.h"
 
-Node* balancear(Arvore* arvore, Node* no, Node* noInserido){
-	Node* noPai = getPai(arvore->raiz, no->valor);
-	int alturaPercorrida;
-
+Node* balancear(Arvore* arvore, Node* no){
+	no->altura->fatorBalanceamento = getFatorBalanceamento(no);
+	
 	// verificar se o nó está balanceado
 	if(isBalanceado(no) != 1){		
-		return rotacionar(arvore, no, noInserido);	
+		printf("Desbalanceado! no: %d --- fb = %d\n", no->valor, no->altura->fatorBalanceamento);
+		rotacionar(arvore, no);	
 	}
+	printf("Balanceado! no: %d --- fb = %d\n", no->valor, no->altura->fatorBalanceamento);
 	return no;
 }
 
 int isBalanceado(Node* no){
-	if(no->altura->direita >= -1 && no->altura->esquerda <= 1)
+	int fb = no->altura->fatorBalanceamento;
+	if((fb >= -1) && (fb <= 1))
 		return 1;
 	else
 		return 0;
 }
 
-Node* calculaAltura(Node* no){
-	// é folha?
-	if(isFolha(no) == 1)
-		return no;	
-	
-	// é sub folha?
-	else if(isSubFolha(no) == 1){
-		no->altura->esquerda = getAltura(no);
-		no->altura>direita = getAltura(no);
-		no->altura->fatorBalanceamento = no->altura>direita - no->altura->esquerda;
-		return no;
-	}	
-		
-	// é pai de dois filhos (maior dos menores)?
-	else if(isPaiDoisFilhos(no) == 1){
-		no->altura->esquerda = getAltura(no);
-		no->altura>direita = getAltura(no);
-		no->altura->fatorBalanceamento = no->altura>direita - no->altura->esquerda;
-		return no;
-	}			
+int getFatorBalanceamento(Node* no){
+	if(no->sae != NULL)
+		no->altura->esquerda = 1 + getMaiorAltura(no->sae);
+	else if(no->sad != NULL)
+		no->altura->direita = 1 + getMaiorAltura(no->sad);
+	return no->altura->direita - no->altura->esquerda;
 }
 
-
-Altura* getAltura(Node no){
-	Altura* altura;
-	
-	if (no != NULL){
-		if(isSubFolha(no) == 1){
-			if(no->sae != NULL){
-				altura->esquerda += 1;
-				return getAltura(no->sae);
-			}else if(no->sad != NULL){
-				alturaDireita += 1;
-				return getAltura(no->sad);
-			}
-		}
-		else if(isPaiDoisFilhos(no) == 1){
-			altura->esquerda += 1;
-			altura->direita += 1;
-			altura = getAltura(no->sae);
-			altura = getAltura(no->sad);
-			return altura;
-		}
-	}
-	return altura;
+int getMaiorAltura(Node* no){
+	if(no->altura->esquerda > no->altura->direita)
+		return no->altura->esquerda;
+	else
+		return no->altura->direita;
 }

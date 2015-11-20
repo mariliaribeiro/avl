@@ -5,5 +5,5 @@
 Node* balancear(Arvore*, Node*);
 int isBalanceado(Node*);
 int getFatorBalanceamento(Node*);
-
+int getMaiorAltura(Node*);
 #endif
