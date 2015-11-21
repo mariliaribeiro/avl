@@ -18,4 +18,3 @@ Node* getPai(Node* no, int valor){
         return NULL;
     }
 }
-

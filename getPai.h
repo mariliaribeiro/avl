@@ -4,6 +4,5 @@
 #include "definicoes.h"
 
 Node* getPai(Node*, int);
-Node* getPaiArvore(Arvore*, int);
 
 #endif

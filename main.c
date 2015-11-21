@@ -23,14 +23,32 @@ int main(){
 }
 
 void popular(Arvore* arvore){
-    arvore->raiz = inserir(arvore, arvore->raiz, 20);
-    arvore->raiz = inserir(arvore, arvore->raiz, 10);
-    arvore->raiz = inserir(arvore, arvore->raiz, 15);
-    arvore->raiz = inserir(arvore, arvore->raiz, 13);
-    arvore->raiz = inserir(arvore, arvore->raiz, 18);
-    /*arvore->raiz = inserir(arvore, arvore->raiz, 5);
-    arvore->raiz = inserir(arvore, arvore->raiz, 2);
+    /* rotação símples a esquerda 
+    arvore->raiz = inserir(arvore, arvore->raiz, 6);
+    arvore->raiz = inserir(arvore, arvore->raiz, 8);
+    arvore->raiz = inserir(arvore, arvore->raiz, 12);
     arvore->raiz = inserir(arvore, arvore->raiz, 7);
+    arvore->raiz = inserir(arvore, arvore->raiz, 14);
+    arvore->raiz = inserir(arvore, arvore->raiz, 16);*/
+
+    
+    /* rotação símples a direita 
+    arvore->raiz = inserir(arvore, arvore->raiz, 12);
+    arvore->raiz = inserir(arvore, arvore->raiz, 8);    
+    arvore->raiz = inserir(arvore, arvore->raiz, 7);
+    arvore->raiz = inserir(arvore, arvore->raiz, 11);
+    arvore->raiz = inserir(arvore, arvore->raiz, 6);
+    arvore->raiz = inserir(arvore, arvore->raiz, 5);*/
+    
+    arvore->raiz = inserir(arvore, arvore->raiz, 20);
+    arvore->raiz = inserir(arvore, arvore->raiz, 15);
+    arvore->raiz = inserir(arvore, arvore->raiz, 10);
+    arvore->raiz = inserir(arvore, arvore->raiz, 5);
+    arvore->raiz = inserir(arvore, arvore->raiz, 2);
+   // arvore->raiz = inserir(arvore, arvore->raiz, 7);
+    /*arvore->raiz = inserir(arvore, arvore->raiz, 13);
+    arvore->raiz = inserir(arvore, arvore->raiz, 18);
+    
     arvore->raiz = inserir(arvore, arvore->raiz, 30);
     arvore->raiz = inserir(arvore, arvore->raiz, 25);
     arvore->raiz = inserir(arvore, arvore->raiz, 45);
