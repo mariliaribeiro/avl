@@ -4,5 +4,5 @@
 #include "definicoes.h"
 
 Node* inserirNo(int);
-Node* inserir(Arvore*, Node*,int);
+Node* inserir(Node*,int);
 #endif

@@ -16,11 +16,12 @@
 	-------------------------------------------------------------------------------------
 */
 
-Node* balancear(Arvore* arvore, Node* no){
+Node* balancear(Node* no){
 	no->altura->fatorBalanceamento = getFatorBalanceamento(no);
+	printf("no: %d -- fb: %d\n", no->valor, no->altura->fatorBalanceamento);
 
 	if(isBalanceado(no) != 1) // está balanceado?
-		return rotacionar(arvore, no);
+		return rotacionar(no);
     else
         return no;
 }
@@ -48,91 +49,51 @@ int getMaiorAltura(Node* no){
 		return no->altura->direita;
 }
 
-Node* rotacionar(Arvore* arvore, Node* desbalanceado){
-    int fbFilho;
+Node* rotacionar(Node* desbalanceado){
     int fbDesbalanceado = desbalanceado->altura->fatorBalanceamento;
-    Node* subRaiz;
+    int fbFilho;    
     Node* noAux;
-	Node* pai;
-	Node* filho;
-        
+	    
 	if (fbDesbalanceado == 2){ //desbalanceou a sub árvore a esquerda
         fbFilho = desbalanceado->sad->altura->fatorBalanceamento;
 		if(fbFilho == 1 || fbFilho == 0){
-			filho = getFolha(desbalanceado->sad, desbalanceado->altura->fatorBalanceamento);
-			pai = getPai(desbalanceado, filho->valor);
-            return rotacaoSimplesEsquerda(arvore, desbalanceado, pai, filho);
+			return rotacaoSimplesEsquerda(desbalanceado);
 		}
 		else if (fbFilho == -1){ //Rotação dupla com filho a direita pai a esquerda
-            subRaiz = desbalanceado->sad;
-			pai = subRaiz->sae;
-			filho = pai->sad;
-			noAux = rotacaoSimplesEsquerda(arvore, subRaiz, pai, filho);
-			pai = noAux;
-			filho = pai->sad;
-			return rotacaoSimplesDireita(arvore, desbalanceado, pai, filho);
-			//noAux = rotacaoSimplesDireita(arvore, desbalanceado->sae);
-			//return rotacaoSimplesEsquerda(arvore, noAux);
+			noAux = rotacaoSimplesDireita(desbalanceado->sae);
+			return rotacaoSimplesEsquerda(noAux);
 		}
 	}
 	else if (fbDesbalanceado == -2){ //desbalanceou a sub árvore a esquerda
         fbFilho = desbalanceado->sae->altura->fatorBalanceamento;
 		if(fbFilho == -1 || fbFilho == 0){
-			filho = getFolha(desbalanceado->sae, desbalanceado->altura->fatorBalanceamento);
-			pai = getPai(desbalanceado, filho->valor);
-            return rotacaoSimplesDireita(arvore, desbalanceado, pai, filho);
+            return rotacaoSimplesDireita(desbalanceado);
 		}
-		else if (fbFilho == 1){		//Rotação dupla com filho a esquerda e pai a direita
-			subRaiz = desbalanceado->sae;
-			pai = subRaiz->sad;
-			filho = pai->sae;
-			noAux = rotacaoSimplesEsquerda(arvore, subRaiz, pai, filho);
-			pai = noAux;
-			filho = pai->sae;
-			return rotacaoSimplesDireita(arvore, desbalanceado, pai, filho);
-			//noAux = rotacaoSimplesEsquerda(arvore, desbalanceado);
-			//return rotacaoSimplesDireita(arvore, noAux);
+		else if (fbFilho == 1){		//Rotação dupla com filho a esquerda e pai a direita]
+			noAux = rotacaoSimplesEsquerda(desbalanceado->sad);
+			return rotacaoSimplesDireita(noAux);
 		}
 	}
 }
 
-Node* rotacaoSimplesEsquerda(Arvore* arvore, Node* desbalanceado, Node* pai, Node* filho){
-    if (desbalanceado->valor == arvore->raiz->valor){//nó desbalanceado é a raiz
-        desbalanceado->sad = pai->sae;
-        desbalanceado->altura->direita = getMaiorAltura(desbalanceado);
-        pai->sae = desbalanceado;
-        pai->altura->esquerda = getMaiorAltura(pai);
-        arvore->raiz = pai;
-        return arvore->raiz;
-    }else{ // nó desbalanceado não é a raíz
-        Node* subRaiz = getPai(arvore->raiz, desbalanceado->valor);
-        desbalanceado->sad = pai->sae;
-        desbalanceado->altura->direita = getMaiorAltura(desbalanceado);
-        pai->sae = desbalanceado;
-        pai->altura->esquerda = getMaiorAltura(pai);
-        subRaiz = pai;
-        return subRaiz;
-    }
+Node* rotacaoSimplesEsquerda(Node* desbalanceado){
+	Node* filho = desbalanceado->sad;
+	desbalanceado->sad = filho->sae;
+	desbalanceado->altura->direita = getMaiorAltura(desbalanceado);
+	filho->sae = desbalanceado;
+	filho->altura->esquerda = getMaiorAltura(filho);
+	desbalanceado = filho;
+	return desbalanceado;
 }
 
-Node* rotacaoSimplesDireita(Arvore* arvore, Node* desbalanceado, Node* pai, Node* filho){
-	if (desbalanceado->valor == arvore->raiz->valor){//nó desbalanceado é a raiz
-        desbalanceado->sae = pai->sad;
-        desbalanceado->altura->esquerda = getMaiorAltura(desbalanceado);
-        pai->sad = desbalanceado;
-        pai->altura->direita = getMaiorAltura(pai);
-        arvore->raiz = pai;
-        return arvore->raiz;
-    }else{ // nó desbalanceado não é a raíz
-        Node* subRaiz = getPai(arvore->raiz, desbalanceado->valor);
-        desbalanceado->sae = pai->sad;
-        desbalanceado->altura->esquerda = getMaiorAltura(desbalanceado);
-        pai->sad = desbalanceado;
-        pai->altura->direita = getMaiorAltura(pai);
-		subRaiz = pai;
-        return subRaiz;
-    }
-    return arvore->raiz;
+Node* rotacaoSimplesDireita(Node* desbalanceado){
+	Node* filho = desbalanceado->sae;	
+	desbalanceado->sae = filho->sad;
+	desbalanceado->altura->esquerda = getMaiorAltura(desbalanceado);
+	filho->sad = desbalanceado;
+	filho->altura->direita = getMaiorAltura(filho);
+	desbalanceado = filho;
+	return desbalanceado;
 }
 
 Node* getFolha(Node* no, int fb){

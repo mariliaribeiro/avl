@@ -8,19 +8,18 @@ Node* inserirNo(int valor){
     return novoNo;
 }
 
-Node* inserir(Arvore* arvore, Node* subRaiz, int valor){
+Node* inserir(Node* subRaiz, int valor){
     /* inserção menor ou igual vão para a sae
      * logo,  a remoção dever pegar o maior dos menores*/
         
     if (subRaiz != NULL){
 		if (subRaiz->valor < valor)
-			subRaiz->sad = inserir(arvore, subRaiz->sad, valor);
+			subRaiz->sad = inserir(subRaiz->sad, valor);
 		else
-			subRaiz->sae = inserir(arvore, subRaiz->sae, valor);
+			subRaiz->sae = inserir(subRaiz->sae, valor);
 	}else{
-		//subRaiz = inserirNo(valor);
         return inserirNo(valor);
 	}
-	subRaiz = balancear(arvore, subRaiz);
+	subRaiz = balancear(subRaiz);
     return subRaiz;
 }

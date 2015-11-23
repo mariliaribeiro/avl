@@ -24,54 +24,65 @@ int main(){
 
 void popular(Arvore* arvore){
     /* rotação símples a esquerda 
-    arvore->raiz = inserir(arvore, arvore->raiz, 6);
-    arvore->raiz = inserir(arvore, arvore->raiz, 8);
-    arvore->raiz = inserir(arvore, arvore->raiz, 12);
-    arvore->raiz = inserir(arvore, arvore->raiz, 7);
-    arvore->raiz = inserir(arvore, arvore->raiz, 14);
-    arvore->raiz = inserir(arvore, arvore->raiz, 16);*/
-
+    printf("\n inserindo \n");
+    arvore->raiz = inserir(arvore->raiz, 6);
+    exibeOrdem(arvore);
+    printf("\n inserindo \n");
+    arvore->raiz = inserir(arvore->raiz, 8);
+    exibeOrdem(arvore);
+    printf("\n inserindo 12\n");
+    arvore->raiz = inserir(arvore->raiz, 12);
+    exibeOrdem(arvore);
+    printf("\n inserindo \n");
+    arvore->raiz = inserir(arvore->raiz, 7);
+    exibeOrdem(arvore);
+    printf("\n inserindo \n");
+    arvore->raiz = inserir(arvore->raiz, 14);
+    exibeOrdem(arvore);
+    printf("\n inserindo \n");
+    arvore->raiz = inserir(arvore->raiz, 16);
+    printf("\n");*/
     
     /* rotação símples a direita 
     printf("\n inserindo \n");
-    arvore->raiz = inserir(arvore, arvore->raiz, 12);
+    arvore->raiz = inserir(arvore->raiz, 12);
     exibeOrdem(arvore);
     printf("\n inserindo \n");
-    arvore->raiz = inserir(arvore, arvore->raiz, 8);    
+    arvore->raiz = inserir(arvore->raiz, 8);    
     exibeOrdem(arvore);
     printf("\n inserindo \n");
-    arvore->raiz = inserir(arvore, arvore->raiz, 7);
+    arvore->raiz = inserir(arvore->raiz, 7);
     exibeOrdem(arvore);
     printf("\n inserindo \n");
-    arvore->raiz = inserir(arvore, arvore->raiz, 11);
+    arvore->raiz = inserir(arvore->raiz, 11);
     exibeOrdem(arvore);
     printf("\n inserindo \n");
-    arvore->raiz = inserir(arvore, arvore->raiz, 6);
+    arvore->raiz = inserir(arvore->raiz, 6);
     exibeOrdem(arvore);
     printf("\n inserindo \n");
-    arvore->raiz = inserir(arvore, arvore->raiz, 5);
+    arvore->raiz = inserir(arvore->raiz, 5);
     exibeOrdem(arvore);
     printf("\n");*/
     
-    /* minha árvore */
+    /* minha árvore 
     printf("\n inserindo \n");
-    arvore->raiz = inserir(arvore, arvore->raiz, 20);
-    arvore->raiz = inserir(arvore, arvore->raiz, 10);
-    arvore->raiz = inserir(arvore, arvore->raiz, 15);
-    arvore->raiz = inserir(arvore, arvore->raiz, 13);
-    /*arvore->raiz = inserir(arvore, arvore->raiz, 18);
-    arvore->raiz = inserir(arvore, arvore->raiz, 5);
-    arvore->raiz = inserir(arvore, arvore->raiz, 2);
-    arvore->raiz = inserir(arvore, arvore->raiz, 7);
-    arvore->raiz = inserir(arvore, arvore->raiz, 30);
-    arvore->raiz = inserir(arvore, arvore->raiz, 25);
-    arvore->raiz = inserir(arvore, arvore->raiz, 45);
-    arvore->raiz = inserir(arvore, arvore->raiz, 28);
-    arvore->raiz = inserir(arvore, arvore->raiz, 27);
-    arvore->raiz = inserir(arvore, arvore->raiz, 29);
-    arvore->raiz = inserir(arvore, arvore->raiz, 40);
-    arvore->raiz = inserir(arvore, arvore->raiz, 60);
-    arvore->raiz = inserir(arvore, arvore->raiz, 6);*/	
+    arvore->raiz = inserir(arvore->raiz, 20);
+    arvore->raiz = inserir(arvore->raiz, 10);
+    arvore->raiz = inserir(arvore->raiz, 15);
+    arvore->raiz = inserir(arvore->raiz, 13);*/
+    /*arvore->raiz = inserir(arvore->raiz, 18);
+    arvore->raiz = inserir(arvore->raiz, 5);
+    arvore->raiz = inserir(arvore->raiz, 2);
+    arvore->raiz = inserir(arvore->raiz, 7);
+    arvore->raiz = inserir(arvore->raiz, 30);
+    arvore->raiz = inserir(arvore->raiz, 25);
+    arvore->raiz = inserir(arvore->raiz, 45);
+    arvore->raiz = inserir(arvore->raiz, 28);
+    arvore->raiz = inserir(arvore->raiz, 27);
+    arvore->raiz = inserir(arvore->raiz, 29);
+    arvore->raiz = inserir(arvore->raiz, 40);
+    arvore->raiz = inserir(arvore->raiz, 60);
+    arvore->raiz = inserir(arvore->raiz, 6);*/	
 }
 
 void exibeOrdem(Arvore* arvore){
