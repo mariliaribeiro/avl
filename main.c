@@ -33,22 +33,36 @@ void popular(Arvore* arvore){
 
     
     /* rotação símples a direita 
+    printf("\n inserindo \n");
     arvore->raiz = inserir(arvore, arvore->raiz, 12);
+    exibeOrdem(arvore);
+    printf("\n inserindo \n");
     arvore->raiz = inserir(arvore, arvore->raiz, 8);    
+    exibeOrdem(arvore);
+    printf("\n inserindo \n");
     arvore->raiz = inserir(arvore, arvore->raiz, 7);
+    exibeOrdem(arvore);
+    printf("\n inserindo \n");
     arvore->raiz = inserir(arvore, arvore->raiz, 11);
+    exibeOrdem(arvore);
+    printf("\n inserindo \n");
     arvore->raiz = inserir(arvore, arvore->raiz, 6);
-    arvore->raiz = inserir(arvore, arvore->raiz, 5);*/
+    exibeOrdem(arvore);
+    printf("\n inserindo \n");
+    arvore->raiz = inserir(arvore, arvore->raiz, 5);
+    exibeOrdem(arvore);
+    printf("\n");*/
     
+    /* minha árvore */
+    printf("\n inserindo \n");
     arvore->raiz = inserir(arvore, arvore->raiz, 20);
-    arvore->raiz = inserir(arvore, arvore->raiz, 15);
     arvore->raiz = inserir(arvore, arvore->raiz, 10);
+    arvore->raiz = inserir(arvore, arvore->raiz, 15);
+    arvore->raiz = inserir(arvore, arvore->raiz, 13);
+    /*arvore->raiz = inserir(arvore, arvore->raiz, 18);
     arvore->raiz = inserir(arvore, arvore->raiz, 5);
     arvore->raiz = inserir(arvore, arvore->raiz, 2);
-   // arvore->raiz = inserir(arvore, arvore->raiz, 7);
-    /*arvore->raiz = inserir(arvore, arvore->raiz, 13);
-    arvore->raiz = inserir(arvore, arvore->raiz, 18);
-    
+    arvore->raiz = inserir(arvore, arvore->raiz, 7);
     arvore->raiz = inserir(arvore, arvore->raiz, 30);
     arvore->raiz = inserir(arvore, arvore->raiz, 25);
     arvore->raiz = inserir(arvore, arvore->raiz, 45);
@@ -57,7 +71,7 @@ void popular(Arvore* arvore){
     arvore->raiz = inserir(arvore, arvore->raiz, 29);
     arvore->raiz = inserir(arvore, arvore->raiz, 40);
     arvore->raiz = inserir(arvore, arvore->raiz, 60);
-    arvore->raiz = inserir(arvore, arvore->raiz, 6);*/
+    arvore->raiz = inserir(arvore, arvore->raiz, 6);*/	
 }
 
 void exibeOrdem(Arvore* arvore){

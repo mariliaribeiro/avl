@@ -7,7 +7,7 @@ int isBalanceado(Node*);
 int getFatorBalanceamento(Node*);
 int getMaiorAltura(Node*);
 Node* rotacionar(Arvore*, Node*);
-Node* rotacaoSimplesEsquerda(Arvore*, Node*);
-Node* rotacaoSimplesDireita(Arvore*, Node*);
+Node* rotacaoSimplesEsquerda(Arvore*, Node*, Node*, Node*);
+Node* rotacaoSimplesDireita(Arvore*, Node*, Node*, Node*);
 Node* getFolha(Node*, int);
 #endif
