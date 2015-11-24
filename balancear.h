@@ -9,5 +9,5 @@ int getMaiorAltura(Node*);
 Node* rotacionar(Node*);
 Node* rotacaoSimplesEsquerda(Node*);
 Node* rotacaoSimplesDireita(Node*);
-Node* getFolha(Node*, int);
+void atualizarAltura(Node*);
 #endif
