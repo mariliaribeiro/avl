@@ -16,7 +16,7 @@ Node* remover(Arvore* arvore, Node* no, int valor){
             // é folha ?            
 			if(isFolha(no) == 1)				
 				no = removerFolha(arvore, no, noPai, valor);
-            
+				
             // é sub folha?
 			else if(isSubFolha(no) == 1)
 				no = removerSubFolha(arvore, no, noPai, valor);	
@@ -27,18 +27,18 @@ Node* remover(Arvore* arvore, Node* no, int valor){
         }
         else if (no->valor > valor){
 			noPai = getPai(no, valor);
-            no = remover(arvore, no->sae, valor);
+            no =  remover(arvore, no->sae, valor);
         }
         else{
 			noPai = getPai(no, valor);
-            no = remover(arvore, no->sad, valor);
+            no =  remover(arvore, no->sad, valor);
         }
     }
-
-    //Node* folha = getFolha(no);
-    //atualizarAltura(no);
-    //no = balancear(no);
-    return no;
+    
+    //printf("no:%d \n", no->valor);
+    //printf("no:%d he:%d hd:%d fb:%d\n", no->valor, no->altura->direita,no->altura->esquerda, no->altura->fatorBalanceamento);
+    return balancear(no);
+	
 }
 
 Node* removerFolha(Arvore* arvore, Node* no, Node* noPai, int valor){
@@ -46,19 +46,21 @@ Node* removerFolha(Arvore* arvore, Node* no, Node* noPai, int valor){
 	
 	if(noPai != NULL){
 		if(noPai->valor > valor)
-			 noPai->sae = NULL;
+			noPai->sae = NULL;
 		else
-			noPai->sad = NULL;
+			noPai->sad = NULL;		
+		printf("Removido: %d\n", noRemover->valor);
+		free(noRemover);
+		atualizarAltura(noPai, no);			
+		return noPai;
 	}else{
 		no = NULL;
 		arvore->raiz = no;
+		printf("Removido: %d\n", noRemover->valor);
+		free(noRemover);	
+		atualizarAltura(arvore->raiz, no);		
+		return arvore->raiz;
 	}
-		 
-	printf("Removido: %d\n", noRemover->valor);
-	free(noRemover);
-    atualizarAltura(no);
-    balancear(no);
-	return no;
 }
 
 //if ternário -> condição ? verdadeiro : falso
@@ -70,16 +72,19 @@ Node* removerSubFolha(Arvore* arvore, Node* no, Node* noPai, int valor){
 			noPai->sae = no->sad != NULL ? noRemover->sad : noRemover->sae;
 		else
 			noPai->sad = no->sad != NULL ? noRemover->sad : noRemover->sae;
+			
+		printf("Removido: %d\n", noRemover->valor);
+		free(noRemover);
+		atualizarAltura(noPai, no);			
+		return noPai;
 	}else{
 		no = no->sad != NULL ? noRemover->sad : noRemover->sae;
 		arvore->raiz = no;
+		printf("Removido: %d\n", noRemover->valor);
+		free(noRemover);
+		atualizarAltura(arvore->raiz, no);			
+		return arvore->raiz;
 	}
-	
-	printf("Removido: %d\n", noRemover->valor);
-	free(noRemover);
-    atualizarAltura(no);
-    balancear(no);
-	return no;	
 }
 
 Node* removerPaiDoisFilhos(Arvore* arvore, Node* no, Node* noPai, int valor){	
@@ -96,16 +101,19 @@ Node* removerPaiDoisFilhos(Arvore* arvore, Node* no, Node* noPai, int valor){
 			noPai->sae = noSubstituto;
 		else
 			noPai->sad = noSubstituto;
+			
+		printf("Removido: %d\n", noRemover->valor);
+		free(noRemover);	
+		atualizarAltura(noPai, no);		
+		return noPai;
 	}else{	
 		no = noSubstituto;
 		arvore->raiz = no;
+		printf("Removido: %d\n", noRemover->valor);
+		free(noRemover);
+		atualizarAltura(arvore->raiz, no);			
+		return arvore->raiz;
 	}
-	
-	printf("Removido: %d\n", noRemover->valor);
-	free(noRemover);	
-    atualizarAltura(no);
-    balancear(no);
-    return no;	
 }
 
 Node* getMaiorMenores(Node* no){
@@ -122,15 +130,4 @@ Node* getNoSubstituto(Node* no){
 		return getMaiorMenores(no->sad);
 	else
 		return no;
-}
-
-Node* getFolha(Node* no){
-    if (isFolha(no) ==  1){
-        return no;
-    }
-    else{
-        no = getFolha(no->sae);
-        no = getFolha(no->sad);
-        return no;
-    }
 }

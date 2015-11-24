@@ -9,7 +9,5 @@ Node* removerSubFolha(Arvore*, Node*, Node*, int);
 Node* removerPaiDoisFilhos(Arvore*, Node*, Node*, int);
 Node* getMaiorMenores(Node*);
 Node* getNoSubstituto(Node*);
-Node* getFolha(Node*);
-
 
 #endif

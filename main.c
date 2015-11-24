@@ -9,6 +9,7 @@ void popular(Arvore*);
 void exibeOrdem(Arvore*);
 void exibeBusca(Arvore*);
 void exibeRemocao(Arvore*);
+void remocao(Arvore*, Node*);
 
 int main(){
 	Arvore* minhaArvore;
@@ -32,6 +33,8 @@ void popular(Arvore* arvore){
     arvore->raiz = inserir(arvore->raiz, 2);
     arvore->raiz = inserir(arvore->raiz, 7);
     arvore->raiz = inserir(arvore->raiz, 30);
+    arvore->raiz = inserir(arvore->raiz, 25);
+    arvore->raiz = inserir(arvore->raiz, 28);
 }
 
 void exibeOrdem(Arvore* arvore){
@@ -49,13 +52,19 @@ void exibeBusca(Arvore* arvore){
     printf("\n#----- Buscando valores da árvore -----#\n");
     imprimeBusca(buscar(arvore->raiz, 10), 10);
     imprimeBusca(buscar(arvore->raiz, 20), 20);
-    imprimeBusca(buscar(arvore->raiz, 15), 15);
+    imprimeBusca(buscar(arvore->raiz, 3), 3);
 }
 
 void exibeRemocao(Arvore* arvore){
     printf("\n#----- Removendo valores da árvore: -----#\n");
-    remover(arvore, arvore->raiz, 13);
-    remover(arvore, arvore->raiz, 25);
-    remover(arvore, arvore->raiz, 10);
-    //arvore->raiz = remover(arvore, arvore->raiz, 20);
+	Node* no;
+	no = remover(arvore, arvore->raiz, 13);
+	remocao(arvore, no);
+}
+
+void remocao(Arvore* arvore, Node* no){
+	if(arvore->raiz->valor > no->valor)
+		arvore->raiz->sae = no;
+	else
+		arvore->raiz->sad = no;
 }

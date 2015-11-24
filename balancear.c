@@ -47,6 +47,13 @@ int getMaiorAltura(Node* no){
 		return no->altura->direita;
 }
 
+int getMenorAltura(Node* no){
+	if(no->altura->esquerda < no->altura->direita)
+		return no->altura->esquerda;
+	else
+		return no->altura->direita;
+}
+
 Node* rotacionar(Node* desbalanceado){
     int fbDesbalanceado = desbalanceado->altura->fatorBalanceamento;
     int fbFilho;    
@@ -91,8 +98,11 @@ Node* rotacaoSimplesDireita(Node* desbalanceado){
 	return filho;
 }
 
-void atualizarAltura(Node* no){
-    no->altura->esquerda = getMaiorAltura(no);
-    no->altura->direita = getMaiorAltura(no);
+void atualizarAltura(Node* no, Node* noRemover){
+	if(no->valor < noRemover->valor)
+		no->altura->esquerda = no->altura->esquerda - 1;
+    else
+		no->altura->direita = no->altura->direita - 1;
+    
     no->altura->fatorBalanceamento = no->altura->direita - no->altura->esquerda;
 }
