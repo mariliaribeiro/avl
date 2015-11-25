@@ -10,5 +10,4 @@ int getMenorAltura(Node*);
 Node* rotacionar(Node*);
 Node* rotacaoSimplesEsquerda(Node*);
 Node* rotacaoSimplesDireita(Node*);
-void atualizarAltura(Node*, Node*);
 #endif

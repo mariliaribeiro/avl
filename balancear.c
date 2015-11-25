@@ -98,11 +98,3 @@ Node* rotacaoSimplesDireita(Node* desbalanceado){
 	return filho;
 }
 
-void atualizarAltura(Node* no, Node* noRemover){
-	if(no->valor < noRemover->valor)
-		no->altura->esquerda = no->altura->esquerda - 1;
-    else
-		no->altura->direita = no->altura->direita - 1;
-    
-    no->altura->fatorBalanceamento = no->altura->direita - no->altura->esquerda;
-}

@@ -13,7 +13,7 @@ Node* getPai(Node* no, int valor){
                 return no;
             else
                 return getPai(no->sae, valor);
-        }        
+        }
     }else{
         return NULL;
     }

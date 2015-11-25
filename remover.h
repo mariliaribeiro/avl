@@ -3,10 +3,10 @@
 
 #include "definicoes.h"
 
-Node* remover(Arvore*, Node*, int);
-Node* removerFolha(Arvore*, Node*, Node*, int);
-Node* removerSubFolha(Arvore*, Node*, Node*, int);
-Node* removerPaiDoisFilhos(Arvore*, Node*, Node*, int);
+Node* remover(Node*, int);
+Node* removerFolha(Node*, int);
+Node* removerSubFolha(Node*, int);
+Node* removerPaiDoisFilhos(Node*, int);
 Node* getMaiorMenores(Node*);
 Node* getNoSubstituto(Node*);
 

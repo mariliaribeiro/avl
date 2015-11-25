@@ -9,7 +9,6 @@ void popular(Arvore*);
 void exibeOrdem(Arvore*);
 void exibeBusca(Arvore*);
 void exibeRemocao(Arvore*);
-void remocao(Arvore*, Node*);
 
 int main(){
 	Arvore* minhaArvore;
@@ -57,14 +56,7 @@ void exibeBusca(Arvore* arvore){
 
 void exibeRemocao(Arvore* arvore){
     printf("\n#----- Removendo valores da árvore: -----#\n");
-	Node* no;
-	no = remover(arvore, arvore->raiz, 13);
-	remocao(arvore, no);
-}
-
-void remocao(Arvore* arvore, Node* no){
-	if(arvore->raiz->valor > no->valor)
-		arvore->raiz->sae = no;
-	else
-		arvore->raiz->sad = no;
+    arvore->raiz = remover(arvore->raiz, 13);
+    arvore->raiz = remover(arvore->raiz, 10);
+    arvore->raiz = remover(arvore->raiz, 15);
 }
